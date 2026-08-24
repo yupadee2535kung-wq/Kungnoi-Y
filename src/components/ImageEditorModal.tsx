@@ -474,11 +474,11 @@ export const ImageEditorModal: React.FC = () => {
                     </button>
                     <button
                       onClick={resetSlideshowList}
-                      className="text-[11px] text-neutral-400 hover:text-amber-400 flex items-center gap-1 cursor-pointer"
-                      title="รีเซ็ตกลับเป็น 10 พรีเซ็ตมาตรฐาน"
+                      className="text-[11px] text-amber-300 hover:text-white bg-amber-950/60 hover:bg-amber-900 border border-amber-500/40 px-2.5 py-1 rounded-lg flex items-center gap-1 cursor-pointer transition-colors"
+                      title="รีเซ็ตกลับเป็นภาพจริง 10 ภาพของศิลปิน Kungnoi Y."
                     >
                       <RotateCcw className="w-3 h-3" />
-                      <span>รีเซ็ต 10 พรีเซ็ต</span>
+                      <span>รีเซ็ตเป็นภาพจริง 10 ภาพ</span>
                     </button>
                   </div>
                 </div>
@@ -613,10 +613,10 @@ export const ImageEditorModal: React.FC = () => {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-mono text-neutral-300 block font-bold">
-                    คลัง 10 รูปภาพพรีเซ็ตอัลบั้ม Kungnoi Y. (เลือกเพิ่มเข้าสไลด์โชว์ได้ทันที):
+                    คลัง 10 รูปภาพศิลปินทางการ Kungnoi Y. (ไฟล์ภาพจริง):
                   </label>
                   <span className="text-[10px] font-mono text-amber-400 bg-neutral-950 px-2 py-0.5 rounded border border-neutral-800">
-                    10 TEMPLATES
+                    10 OFFICIAL PHOTOS
                   </span>
                 </div>
 

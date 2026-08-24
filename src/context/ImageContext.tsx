@@ -26,9 +26,9 @@ const DEFAULT_IMAGES: KungnoiImageMap = {
   heroBanner: DEFAULT_SLIDES_PRESETS[2]?.url || '',
 };
 
-const STORAGE_KEY = 'kungnoi_y_custom_images_v11';
-const CUSTOM_SLIDES_STORAGE_KEY = 'kungnoi_y_custom_slideshow_v11';
-const HIDDEN_SLIDES_STORAGE_KEY = 'kungnoi_y_hidden_slides_v11';
+const STORAGE_KEY = 'kungnoi_y_custom_images_v25';
+const CUSTOM_SLIDES_STORAGE_KEY = 'kungnoi_y_custom_slideshow_v25';
+const HIDDEN_SLIDES_STORAGE_KEY = 'kungnoi_y_hidden_slides_v25';
 
 export interface ImageContextType {
   images: KungnoiImageMap;
@@ -67,7 +67,7 @@ export const PRESET_LIBRARY: Record<keyof KungnoiImageMap, { id: string; name: s
   })),
 };
 
-const SLIDESHOW_STORAGE_KEY = 'kungnoi_y_slideshow_v11';
+const SLIDESHOW_STORAGE_KEY = 'kungnoi_y_slideshow_v25';
 
 export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [images, setImages] = useState<KungnoiImageMap>(() => {
@@ -90,7 +90,16 @@ export const ImageProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          // Ensure non-custom slides use the latest actual photo URL
+          return parsed.map((item: SlideshowItem) => {
+            if (!item.isCustom) {
+              const matchedPreset = DEFAULT_SLIDES_PRESETS.find(p => p.id === item.id);
+              if (matchedPreset) {
+                return { ...item, url: matchedPreset.url };
+              }
+            }
+            return item;
+          });
         }
       }
     } catch {
